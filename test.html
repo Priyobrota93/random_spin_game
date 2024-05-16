@@ -243,7 +243,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
     var data = [];
     for (var i = 1; i <= 325; i++) {
         var value = i.toString().padStart(3, '0');
@@ -257,8 +257,19 @@
         }
     }
 
+    // Flag variable to track whether a spin animation is in progress
+    var isSpinning = false;
+
     // Function to initiate the spinning animation
     function spin() {
+        // Check if spin animation is already in progress
+        if (isSpinning) return;
+        
+        // Set the flag to indicate that spin animation is now in progress
+        isSpinning = true;
+        // Play spin sound
+        document.getElementById('spinSound').play();
+
         var randomIndex = Math.floor(Math.random() * data.length); // Get a random index within the data array
         var draw_sl = data[randomIndex]; // Select a random value from the data array for draw_sl
         console.log("draw_sl:", draw_sl);
@@ -281,7 +292,7 @@
                             $('#digit-boxes' + (i + 1)).text(Math.floor(Math.random() * (maxValue + 1)));
                         }
                         currentDigit++;
-                        if (currentDigit >= digitsLength * 50) {
+                        if (currentDigit >= digitsLength * 250) {
                             clearInterval(moveDigits);
                             if (callback) {
                                 callback();
@@ -306,34 +317,58 @@
                                         $('#employeeModal').modal('show');
                                         $('#award-blast').fadeIn(); // Show the award blast after modal show
                                         confetti.start(); // Start the confetti animation
-                                    }, response.digits.length * 1250 + 1250);
+                                    }, response.digits.length * 1150 + 1150);
                                 }, 200);
                             });
                         }, 400);
                     });
                 }, 800);
-            }, 1000);
+            }, 10000);
         } else {
             alert('Error: ' + response.error);
         }
     }
 
-    // Function to stop confetti animation when modal is closed
+    // Function to stop confetti animation when modal is closed and re-enable spin
     $('#employeeModal').on('hidden.bs.modal', function () {
         confetti.stop(); // Stop the confetti animation when the modal is closed
+        
+        // Reset the flag to indicate that spin animation is not in progress anymore
+        isSpinning = false;
+         // Pause the music when modal is closed
+         document.getElementById('spinSound').pause();
     });
 
-    // Bind spin function to Enter, Space, and any key press
-    $(document).on('keydown', function (event) {
-        if (event.key === "Enter" || event.key === " " || event.type === "keydown") {
-            if ($('#employeeModal').is(':visible')) {
-                $('#employeeModal').modal('hide');
-            } else {
-                spin();
+    // Function to bind spin function to Enter, Space, and any key press
+    function enableSpin() {
+        $(document).on('keydown', function (event) {
+            if (event.key === "Enter" || event.key === " " || event.type === "keydown") {
+                if (!$('#employeeModal').is(':visible')) {
+                    spin();
+                }
             }
-        }
-    });
+        });
+    }
+
+    // Function to close modal by pressing any key
+    function closeModalByKey() {
+        $('#employeeModal').on('keydown', function (event) {
+            // Close modal when any key is pressed
+            $('#employeeModal').modal('hide');
+        });
+    }
+
+    // Enable spin initially
+    enableSpin();
+    
+    // Close modal by pressing any key
+    closeModalByKey();
 });
+
+
+
+
+
 
         var confetti = {
             maxCount: 150,
@@ -460,6 +495,7 @@
             }
         }();
     </script>
+    <audio id="spinSound" src="heart_beat_sound.mp3" preload="auto"></audio>
 </body>
 
 </html>
