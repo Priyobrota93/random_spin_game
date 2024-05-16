@@ -317,6 +317,7 @@
                                         $('#employeeModal').modal('show');
                                         $('#award-blast').fadeIn(); // Show the award blast after modal show
                                         confetti.start(); // Start the confetti animation
+                                        document.getElementById('modalMusic').play();
                                     }, response.digits.length * 1150 + 1150);
                                 }, 200);
                             });
@@ -331,12 +332,15 @@
 
     // Function to stop confetti animation when modal is closed and re-enable spin
     $('#employeeModal').on('hidden.bs.modal', function () {
+        
         confetti.stop(); // Stop the confetti animation when the modal is closed
         
         // Reset the flag to indicate that spin animation is not in progress anymore
         isSpinning = false;
          // Pause the music when modal is closed
          document.getElementById('spinSound').pause();
+        
+ 
     });
 
     // Function to bind spin function to Enter, Space, and any key press
@@ -355,6 +359,7 @@
         $('#employeeModal').on('keydown', function (event) {
             // Close modal when any key is pressed
             $('#employeeModal').modal('hide');
+            // document.getElementById('modalMusic').pause();
         });
     }
 
@@ -495,6 +500,8 @@
             }
         }();
     </script>
+    <audio id="modalMusic" src="mixkit-animated-small-group-applause-523.mp3"></audio>
+
     <audio id="spinSound" src="heart_beat_sound.mp3" preload="auto"></audio>
 </body>
 
