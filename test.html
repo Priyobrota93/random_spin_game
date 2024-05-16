@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
+          /* background-image: url("img2.jpeg"); */
+         
           background-size: cover;
           background-position: center;
           color: white;
@@ -16,6 +18,21 @@
           /* display: flex; */
           justify-content: center;
           align-items: center;
+        
+          
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("img2_png.png");
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* Ensure the background image stays behind other content */
+            opacity: 0.04; /* Adjust the opacity value as needed */
         }
         
         .container {
@@ -145,13 +162,13 @@
           height: 40px;
           width: 200px;
           bottom: 2rem;
-          right: 6rem;
+          right: 4rem;
         }
         .inline-container h1 {
           display: inline-block;
           vertical-align: middle;
           margin-right: 10px;
-          font-size: 20px;
+          font-size: 25px;
           color: #545456;
         }
         #leevrngear_img{
@@ -159,40 +176,33 @@
           height:80px;
           width: 290px;
           display: block; /* Ensures image is treated as a block element */
-            margin: 0 auto;
+            /* margin: 0px auto ; */
+           
         }
-        /* #img_text{
-          
-          /* bottom: 2rem; */
-          
-          /* right: rem; */
-          /* font-size: 4rem;
-                color: rgba(0, 0, 0, 0.7); */
-          /* height: 40px;
-          width: 200px; */
-        /* } */ */
+      
         
       </style>
 </head>
 
 <body>
-
-    <div style="margin-top: auto;">
+    <div class="background-image"></div>
+    <div style="position: relative; top: 50px; display: flex; justify-content: center;">
         <img id="leevrngear_img"
           src="data:image/png;base64,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">
-      </div>
+    </div>
+    
 
     <div class="container mt-5">
         <div class="row mb-3">
             <div class="col-md-12 text-center">
-                <h1 style="color:#545456; margin-bottom: 80px; font-size: 40px; font-weight: bold">Raffle Draw</h1>
-                <div class="d-flex justify-content-center align-items-center">
+                <h1 style="color:#545456; margin-top: 80px; font-size: 40px; font-weight: bold">Raffle Draw</h1>
+                <div class="d-flex justify-content-center align-items-center" style="margin-top: 100px;">
                     <div class="value-box" id="digit-boxes1">0</div>
                     <div class="value-box" id="digit-boxes2">0</div>
                     <div class="value-box" id="digit-boxes3">0</div>
                 </div>
-                <h5 style="margin-top: 20px;">Click "Spin"</h5>
-                <button id="spin-btn" class="btn">Find the lucky one!!</button>
+                <!-- <h5 style="margin-top: 20px; color: #545456; font-size: 20px; font-weight: bold;">Click "Spin"</h5> -->
+                <button id="spin-btn" class="btn" style="margin-top: 90px;">Find the lucky one!!</button>
             </div>
         </div>
     </div>
@@ -202,7 +212,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="employeeModalLabel">The Winner Is</h5>
+                    <h5 class="modal-title" id="employeeModalLabel" style="font-size: 25px;">The Winner Is</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -234,112 +244,97 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            var data = [];
-            for (var i = 1; i <= 325; i++) {
+    var data = [];
+    for (var i = 1; i <= 325; i++) {
         var value = i.toString().padStart(3, '0');
         // Exclude specified values
         if (!['201', '204', '205', '206', '207', '208',
-            '236', '246', '247', '248', '249', '250', '251', '252', '253', '262',
-            '265', '266', '268', '269', '270', '274', '275', '289', '290', '305',
-            '308', '310', '312', '314', '318', '319', '320', '321', '322', '323', '324'].includes(value)) {
+                '236', '246', '247', '248', '249', '250', '251', '252', '253', '262',
+                '265', '266', '268', '269', '270', '274', '275', '289', '290', '305',
+                '308', '310', '312', '314', '318', '319', '320', '321', '322', '323', '324'
+            ].includes(value)) {
             data.push(value);
         }
     }
 
-            // Function to trigger spin when Enter key is pressed
-            function spinOnEnter(event) {
-                if (event.key === "Enter") {
-                    spin();
-                }
-            }
+    // Function to initiate the spinning animation
+    function spin() {
+        var randomIndex = Math.floor(Math.random() * data.length); // Get a random index within the data array
+        var draw_sl = data[randomIndex]; // Select a random value from the data array for draw_sl
+        console.log("draw_sl:", draw_sl);
+        var response = {
+            success: true,
+            digits: draw_sl.split("").map(Number), // Split the value into single digits and convert them to numbers
+            draw_sl: draw_sl // Set the draw_sl property to the selected random value
+        };
+        if (response.success) {
+            $('.value-box').addClass('spin-animation');
+            setTimeout(function () {
+                $('.value-box').removeClass('spin-animation');
+                $('.value-box').empty();
+                const digitsLength = response.digits.length;
+                let currentDigit = 0;
 
-            // Function to trigger spin when Space key is pressed
-            function spinOnSpace(event) {
-                if (event.key === " ") {
-                    spin();
-                }
-            }
-
-            // Function to trigger spin when any key is pressed
-            function spinOnAnyKey() {
-                spin();
-            }
-
-            // Function to initiate the spinning animation
-            function spin() {
-                var randomIndex = Math.floor(Math.random() * data.length); // Get a random index within the data array
-                var draw_sl = data[randomIndex]; // Select a random value from the data array for draw_sl
-                console.log("draw_sl:", draw_sl);
-                var response = {
-                    success: true,
-                    digits: draw_sl.split("").map(Number), // Split the value into single digits and convert them to numbers
-                    draw_sl: draw_sl // Set the draw_sl property to the selected random value
+                const animateDigits = function (maxValue, speed, neon, callback) {
+                    const moveDigits = setInterval(function () {
+                        for (let i = 0; i < digitsLength * digitsLength; i++) {
+                            $('#digit-boxes' + (i + 1)).text(Math.floor(Math.random() * (maxValue + 1)));
+                        }
+                        currentDigit++;
+                        if (currentDigit >= digitsLength * 50) {
+                            clearInterval(moveDigits);
+                            if (callback) {
+                                callback();
+                            }
+                        }
+                    }, speed);
                 };
-                if (response.success) {
-                    $('.value-box').addClass('spin-animation');
-                    setTimeout(function () {
-                        $('.value-box').removeClass('spin-animation');
-                        $('.value-box').empty();
-                        const digitsLength = response.digits.length;
-                        let currentDigit = 0;
 
-                        const animateDigits = function (maxValue, speed, neon, callback) {
-                            const moveDigits = setInterval(function () {
-                                for (let i = 0; i < digitsLength * digitsLength; i++) {
-                                    $('#digit-boxes' + (i + 1)).text(Math.floor(Math.random() * (maxValue + 1)));
-                                }
-                                currentDigit++;
-                                if (currentDigit >= digitsLength * 50) {
-                                    clearInterval(moveDigits);
-                                    if (callback) {
-                                        callback();
-                                    }
-                                }
-                            }, speed);
-                        };
-
+                setTimeout(function () {
+                    animateDigits(9, 50, false, function () {
                         setTimeout(function () {
                             animateDigits(9, 50, false, function () {
                                 setTimeout(function () {
-                                    animateDigits(9, 50, false, function () {
+                                    response.digits.forEach(function (digit, index) {
                                         setTimeout(function () {
-                                            response.digits.forEach(function (digit, index) {
-                                                setTimeout(function () {
-                                                    // Show the digit in the corresponding value box
-                                                    $('#digit-boxes' + (index + 1)).text(digit);
-                                                }, (index + 1) * 800);
-                                            });
-                                            setTimeout(function () {
-                                                $('#full-employee-id').text(response.draw_sl);
-                                                $('#employeeModal').modal('show');
-                                                $('#award-blast').fadeIn(); // Show the award blast after modal show
-                                                confetti.start(); // Start the confetti animation
-                                            }, response.digits.length * 1250 + 1250);
-                                        }, 200);
+                                            // Show the digit in the corresponding value box
+                                            $('#digit-boxes' + (index + 1)).text(digit);
+                                        }, (index + 1) * 800);
                                     });
-                                }, 400);
+                                    setTimeout(function () {
+                                        $('#full-employee-id').text(response.draw_sl);
+                                        $('#employeeModal').modal('show');
+                                        $('#award-blast').fadeIn(); // Show the award blast after modal show
+                                        confetti.start(); // Start the confetti animation
+                                    }, response.digits.length * 1250 + 1250);
+                                }, 200);
                             });
-                        }, 800);
-                    }, 1000);
-                } else {
-                    alert('Error: ' + response.error);
-                }
+                        }, 400);
+                    });
+                }, 800);
+            }, 1000);
+        } else {
+            alert('Error: ' + response.error);
+        }
+    }
+
+    // Function to stop confetti animation when modal is closed
+    $('#employeeModal').on('hidden.bs.modal', function () {
+        confetti.stop(); // Stop the confetti animation when the modal is closed
+    });
+
+    // Bind spin function to Enter, Space, and any key press
+    $(document).on('keydown', function (event) {
+        if (event.key === "Enter" || event.key === " " || event.type === "keydown") {
+            if ($('#employeeModal').is(':visible')) {
+                $('#employeeModal').modal('hide');
+            } else {
+                spin();
             }
+        }
+    });
+});
 
-            // Bind spinOnEnter function to Enter key press
-            $(document).on('keydown', spinOnEnter);
-
-            // Bind spinOnSpace function to Space key press
-            $(document).on('keydown', spinOnSpace);
-
-            // // Bind spinOnAnyKey function to any key press
-            // $(document).on('keydown', spinOnAnyKey);
-
-            // Function to stop confetti animation when modal is closed
-            $('#employeeModal').on('hidden.bs.modal', function () {
-                confetti.stop(); // Stop the confetti animation when the modal is closed
-            });
-        });
         var confetti = {
             maxCount: 150,
             speed: 2,
