@@ -275,10 +275,14 @@
                 var spinSound1Audio = document.getElementById('spinSound1');
 
                 spinStartAudio.play();
+                
+                spinStartAudio.currentTime = 0;
+                spinSound1Audio.currentTime = 0;
 
                 // Pause spinStart after 22 seconds and play spinSound1
                 setTimeout(function () {
                     spinStartAudio.pause();
+                    
                     spinSound1Audio.play();
                 }, 22000);
 
@@ -304,7 +308,7 @@
                                     $('#digit-boxes' + (i + 1)).text(Math.floor(Math.random() * (maxValue + 1)));
                                 }
                                 currentDigit++;
-                                if (currentDigit >= digitsLength * 185) {
+                                if (currentDigit >= digitsLength * 184) {
                                     clearInterval(moveDigits);
                                     if (callback) {
                                         callback();
@@ -354,7 +358,7 @@
             // Function to bind spin function to Enter, Space, and any key press
             function enableSpin() {
                 $(document).on('keydown', function (event) {
-                    if (event.key === "Enter" || event.key === " " || event.type === "keydown") {
+                    if (event.key === "Enter" || event.key === " " || (event.type === "keydown" && event.keyCode !== 122)) {
                         if (!$('#employeeModal').is(':visible')) {
                             spin();
                         }
